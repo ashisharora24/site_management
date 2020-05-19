@@ -1,0 +1,11 @@
+    <form method="POST" action=".">
+        {% csrf_token %}
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="True" name="agree" required>I Agree
+          </label>
+        </div>
+    </br>
+        <button class="btn btn-info" type="submit" name="submit" value="submit">Delete</button>
+        <a href="../../../" class="btn btn-success" type="submit" name="submit" value="submit">Reset</a>
+    </form>

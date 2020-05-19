@@ -1,0 +1,21 @@
+{% if department_obj %}
+    <div class="container">
+        List of all the Current Departments : </br>
+          <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Department Name</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for department in department_obj %}
+              <tr>
+                  <td><a href="../{{department.slug}}/">{{department.department|upper}}</a></td>
+                    <td>{{department.status}}</td>
+              </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endif %}

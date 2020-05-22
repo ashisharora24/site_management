@@ -13,6 +13,12 @@ class ModuleModel(models.Model):
     def __str__(self):
         return self.slug
 
+    def save(self, *args, **kwargs):
+        if self.module:
+            self.module = self.module.lower()
+            self.slug = slugify(self.module)
+        super(ModuleModel, self).save(*args, **kwargs)
+
 
 class TargetModel(models.Model):
     target = models.CharField(max_length=120)
@@ -22,14 +28,28 @@ class TargetModel(models.Model):
     def __str__(self):
         return self.slug
 
+    def save(self, *args, **kwargs):
+        if self.target:
+            self.target = self.target.lower()
+            self.slug = slugify(self.target)
+        super(TargetModel, self).save(*args, **kwargs)
+
 
 class ModuleTargetModel(models.Model):
     module = models.ForeignKey(ModuleModel, on_delete=models.CASCADE)
     target = models.ForeignKey(TargetModel, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True)
     status = models.BooleanField(default=True)
 
     def __str__(self):
-        return "{module}-{target}".format(self.module, self.target)
+        return self.slug
+
+    def save(self, *args, **kwargs):
+        if self.target and self.module:
+            self.slug = slugify(str(self.module)+"_"+str(self.target))
+            self.target = TargetModel.objects.filter(slug=self.target).first()
+            self.module = ModuleModel.objects.filter(slug=self.module).first()
+        super(ModuleTargetModel, self).save(*args, **kwargs)
 
 
 class DepartmentModel(models.Model):
@@ -50,29 +70,44 @@ class DepartmentModel(models.Model):
 class DepartmentModuleModel(models.Model):
     department = models.ForeignKey(DepartmentModel, on_delete=models.CASCADE)
     module = models.ForeignKey(ModuleModel, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True)
     status = models.BooleanField(default=True)
 
     def __str__(self):
-        return "{department}-{module}".format(self.department, self.module)
+        return self.slug
+
+    def save(self, *args, **kwargs):
+        if self.department and self.module:
+            self.slug = slugify(str(self.department)+"_"+str(self.module))
+            self.department = DepartmentModel.objects.filter(slug=self.department).first()
+            self.module = ModuleModel.objects.filter(slug=self.module).first()
+        super(DepartmentModuleModel, self).save(*args, **kwargs)
 
 
 class DepartmentGroupModel(models.Model):
     department = models.ForeignKey(DepartmentModel, on_delete=models.CASCADE)
-    group = models.CharField(max_length=120)
+    group = models.CharField(max_length=120, unique=True)
     slug = models.SlugField()
     status = models.BooleanField(default=True)
 
     def __str__(self):
-        return "{department}-{group}".format(self.department, self.group)
+        return self.slug
+
+    def save(self, *args, **kwargs):
+        if self.group:
+            self.group = self.group.lower()
+            self.slug = slugify(str(self.department)+"_"+str(self.group))
+        super(DepartmentGroupModel, self).save(*args, **kwargs)
 
 
-class DepartmentGroupModuleModel(models.Model):
+class DepartmentGroupModuleTargetModel(models.Model):
     department_group = models.ForeignKey(DepartmentModel, on_delete=models.CASCADE)
-    module = models.ForeignKey(ModuleModel, on_delete=models.CASCADE)
+    module_target = models.ForeignKey(ModuleTargetModel, on_delete=models.CASCADE)
+    slug = models.SlugField()
     status = models.BooleanField(default=True)
 
     def __str__(self):
-        return "{department_group}-{module}".format(department_group=self.department_group, module=self.module)
+        return self.slug
 
 
 class UserDepartmentModel(models.Model):
@@ -92,6 +127,7 @@ class UserDepartmentGroupModel(models.Model):
     def __str__(self):
         return "{user_department}-{department_group}".format(user_deparmtent=self.user_department,
                                                              department_group=self.department_group)
+
 
 class UserDepartmentModuleTargetModel(models.Model):
     user_department = models.ForeignKey(UserDepartmentModel, on_delete=models.CASCADE)

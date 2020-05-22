@@ -1,0 +1,23 @@
+{% if department_group_obj %}
+    <div class="container">
+        List of all the Current Departments Group : </br>
+          <table class="table table-striped">
+        <thead>
+          <tr>
+                <th>Department</th>
+                <th>Group</th>
+                <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for department_group in department_group_obj %}
+              <tr>
+                  <td><a href="../../../department/{{department_group.department.department}}/">{{department_group.department.department|upper}}</a></td>
+                  <td><a href="../{{department_group.slug}}/">{{department_group.group|upper}}</a></td>
+                  <td>{{department_group.status}}</td>
+              </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endif %}

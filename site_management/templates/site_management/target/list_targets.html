@@ -1,0 +1,21 @@
+{% if target_obj %}
+<div class="container">
+    List of all the Current Targets : </br>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Target Name</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for target in target_obj %}
+        <tr>
+            <td><a href="../{{target.slug}}/">{{target.target|upper}}</a></td>
+            <td>{{target.status}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}

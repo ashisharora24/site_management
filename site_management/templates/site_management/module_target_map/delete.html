@@ -1,0 +1,9 @@
+{% extends "site_management/base.html" %}
+{% block content %}
+    <div class="container">
+        <h3>Module : {{module_target_obj.module.module|upper}} Target : {{module_target_obj.target.target|upper}}</h3>
+        Are you sure you want to delete this?</br>
+        Please Note : All the related stuff will also be automatically.</br></br>
+        {% include "../delete_form.html" %}
+    </div>
+{% endblock %}

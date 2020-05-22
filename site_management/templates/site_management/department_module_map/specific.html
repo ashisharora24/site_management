@@ -1,0 +1,14 @@
+{% extends "site_management/base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Site Management : Department Module Mapping</h2>
+</div>
+<div class="container">
+    Department Name : {{ department_module_obj.department.department|upper }}</br>
+    Module Name : {{ department_module_obj.module.module|upper }}</br>
+    Status : {{ department_module_obj.status }}</br></br>
+    <a href="../update/{{department_module_obj.slug}}/" type="button" class="btn btn-warning">Update</a>
+    <a href="../delete/{{department_module_obj.slug}}/" type="button" class="btn btn-danger">Delete</a>
+</div>
+
+{% endblock %}

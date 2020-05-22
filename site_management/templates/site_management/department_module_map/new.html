@@ -1,0 +1,12 @@
+{% extends "site_management/base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Site Management : Department Module Mapping</h2>
+</div>
+<div class="container">
+    Create Department Module Mapping Form:</br>
+    {% include "../form.html" %}
+</div>
+</br>
+{% include "./list_department_module_mappings.html" %}
+{% endblock %}

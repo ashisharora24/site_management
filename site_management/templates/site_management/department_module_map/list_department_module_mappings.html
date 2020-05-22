@@ -1,0 +1,25 @@
+{% if department_module_obj %}
+<div class="container">
+    List of all the Current Department Module Mappings : </br>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Edit</th>
+            <th>Department</th>
+            <th>Module</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for department_module in department_module_obj %}
+        <tr>
+            <td><a href="../{{department_module.slug}}/">Edit</a></td>
+            <td><a href="../../department/{{department_module.department.slug}}/">{{department_module.department.department|upper}}</a></td>
+            <td><a href="../../module/{{department_module.module.slug}}/">{{department_module.module.module|upper}}</a></td>
+            <td>{{department_module.status}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}

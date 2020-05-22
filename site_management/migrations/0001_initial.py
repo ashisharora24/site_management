@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='DepartmentGroupModel',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('group', models.CharField(max_length=120)),
+                ('department_group', models.CharField(max_length=120)),
                 ('slug', models.SlugField()),
                 ('status', models.BooleanField(default=True)),
             ],

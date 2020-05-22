@@ -1,0 +1,25 @@
+{% if module_target_obj %}
+<div class="container">
+    List of all the Current Module Target Mappings : </br>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Edit</th>
+            <th>Module</th>
+            <th>Target</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for module_target in module_target_obj %}
+        <tr>
+            <td><a href="../{{module_target.slug}}/">Edit</a></td>
+            <td><a href="../../module/{{module_target.module.slug}}/">{{module_target.module.module|upper}}</a></td>
+            <td><a href="../../target/{{module_target.target.slug}}/">{{module_target.target.target|upper}}</a></td>
+            <td>{{module_target.status}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}

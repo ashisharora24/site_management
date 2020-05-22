@@ -1,0 +1,21 @@
+{% if module_obj %}
+<div class="container">
+    List of all the Current Modules : </br>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Module Name</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for module in module_obj %}
+        <tr>
+            <td><a href="../{{module.slug}}/">{{module.module|upper}}</a></td>
+            <td>{{module.status}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}

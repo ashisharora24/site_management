@@ -6,7 +6,7 @@ from .models import (   ModuleModel,
                         DepartmentModel,
                         DepartmentModuleModel,
                         DepartmentGroupModel,
-                        DepartmentGroupModuleModel,
+                        DepartmentGroupModuleTargetModel,
                         UserDepartmentModel,
                         UserDepartmentGroupModel,
                         UserDepartmentModuleTargetModel
@@ -19,7 +19,7 @@ admin.site.register(ModuleTargetModel)
 admin.site.register(DepartmentModel)
 admin.site.register(DepartmentModuleModel)
 admin.site.register(DepartmentGroupModel)
-admin.site.register(DepartmentGroupModuleModel)
+admin.site.register(DepartmentGroupModuleTargetModel)
 admin.site.register(UserDepartmentModel)
 admin.site.register(UserDepartmentGroupModel)
 admin.site.register(UserDepartmentModuleTargetModel)

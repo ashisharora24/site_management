@@ -1,0 +1,50 @@
+{% if module_target_object %}
+<div class="container">
+    List of all the Current Module Target Mappings : </br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Module</th>
+            <th>Target</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for module_target in module_target_object %}
+            {% for module_obj, m_t_obj in module_target.items %}
+                {% for rowspan, module_target_obj in m_t_obj.items %}
+                    {% if module_target_obj %}
+                        {% for mod_targ_obj in module_target_obj %}
+                            <tr>
+                                {% if forloop.first %}
+                                    <td rowspan="{{rowspan}}">
+                                        <a href="../../module/{{module_obj.slug}}/" target="_blank">{{module_obj.module}}</a>
+                                        {% if module_obj.status == False %}(currently disabled){% endif %}
+                                    </td>
+                                {% endif %}
+                                <td>
+                                    <a href="../../target/{{mod_targ_obj.target.slug}}/" target="_blank">{{mod_targ_obj.target.target}}</a>
+                                    {% if mod_targ_obj.target.status == False %}(currently disabled){% endif %}
+                                </td>
+                                <td><a href="../../module_target_map/{{mod_targ_obj.slug}}/" target="_blank">{{mod_targ_obj.status}}</a></td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                            <tr>
+                                <td>
+                                    <a href="../../module/{{module_obj.slug}}/" target="_blank">{{module_obj.module}}</a>
+                                    {% if module_obj.status == False %}(currently disabled){% endif %}
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+{% endif %}

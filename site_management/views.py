@@ -16,7 +16,7 @@ from .models import (DepartmentModel,
                      )
 
 
-
+from .querys import module_target_query
 
 
 # Create your views here.
@@ -221,16 +221,13 @@ def module_target_map_new(request):
             messages.success(request, 'New Target added.')
             form = ModuleTargetMapNewForm()
     context['form'] = form
-    module_target_obj = ModuleTargetModel.objects.all()
-    context['module_target_obj'] = module_target_obj
+    context['module_target_object'] = module_target_query()
     return render(request, template_name, context)
 
 
 def module_target_map_list(request):
     template_name = 'site_management/module_target_map/list.html'
-    context = {}
-    module_target_obj = ModuleTargetModel.objects.all()
-    context['module_target_obj'] = module_target_obj
+    context = {'module_target_object': module_target_query()}
     return render(request, template_name, context)
 
 

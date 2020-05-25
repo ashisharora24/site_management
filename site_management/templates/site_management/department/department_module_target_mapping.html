@@ -1,0 +1,12 @@
+{% extends "site_management/base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Site Management : Map Department (<a href="../../{{department.slug}}/" target="_blank">{{department|upper}}</a>) to with Module-Target</a></h2>
+    </br><b><u>Step 2 : Map department with Module-Target:</u></b>
+</div></br>
+<form method="POST" action=".">
+    {% csrf_token %}
+    {% include "./form_de_mo_tar_mapping.html" %}
+</form>
+</br></br>
+{% endblock %}

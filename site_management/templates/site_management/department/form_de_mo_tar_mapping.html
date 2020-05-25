@@ -1,0 +1,35 @@
+    <div class="container">
+        Note: Submit Button is present at the bottom of the page</br>
+        <table class="table">
+        <thead>
+        <tr>
+            <th>Module</th>
+            <th>Target</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for module_obj,rowspan,module_target_obj in module_target_with_department_status %}
+            {% if module_target_obj %}
+                {% for mod_tar_obj, status in module_target_obj %}
+                    <tr>
+                        {% if forloop.first %}
+                            <td rowspan="{{rowspan}}">
+                                <a href="../../../module/{{module_obj.slug}}/" target="_blank">{{module_obj.module}}</a>
+                            </td>
+                        {% endif %}
+                        <td>
+                            <input type="checkbox" name="department_module_target" value="{{mod_tar_obj.slug}}"
+                                   {% if status == True %}checked{% endif %}>
+                                    <label>&nbsp; &nbsp; &nbsp;
+                                    <a href="../../../target/{{mod_tar_obj.target.slug}}/" target="_blank">
+                                        {{mod_tar_obj.target.target}}
+                                    </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        </tbody>
+        </table>
+        <button class="btn btn-info" type="submit" name="submit" value="submit">Submit</button>
+    </div>

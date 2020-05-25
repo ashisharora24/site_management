@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.urls import path
 from .views import (home)
-from .views import (department_new, department_list, department_specific, department_update, department_delete)
-from .views import (module_new, module_list, module_specific, module_update, module_delete)
+from .views import (department_new, department_list, department_specific, department_update, department_delete, department_mapping_with_module_target)
+from .views import (module_new, module_list, module_specific, module_update, module_delete, module_target_mapping)
 from .views import (target_new, target_list, target_specific, target_update, target_delete)
 from .views import (module_target_map_new, module_target_map_list, module_target_specific, module_target_update, module_target_delete)
 from .views import (department_module_map_new, department_module_map_list, department_module_specific, department_module_update, department_module_delete)
@@ -30,6 +30,7 @@ urlpatterns = [
     path('department/update/<str:slug>/', department_update, name='site_management__department__update'),
     path('department/delete/<str:slug>/', department_delete, name='site_management__department__delete'),
     path('department/<str:slug>/', department_specific, name='site_management__department__specific'),
+    path('department/module_target_mapping/<str:slug>/', department_mapping_with_module_target, name='site_management__department__map'),
 
     path('department_group/new/', department_group_new, name='site_management__department_group__new'),
     path('department_group/list/', department_group_list, name='site_management__department_group__list'),
@@ -44,6 +45,7 @@ urlpatterns = [
     path('module/update/<str:slug>/', module_update, name='site_management__module__update'),
     path('module/delete/<str:slug>/', module_delete, name='site_management__module__delete'),
     path('module/<str:slug>/', module_specific, name='site_management__module__specific'),
+    path('module/module_target_mapping/<str:slug>/', module_target_mapping, name='site_management__module__target_mapping'),
 
     path('target/new/', target_new, name='site_management__target__new'),
     path('target/list/', target_list, name='site_management__target__list'),

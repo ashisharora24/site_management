@@ -6,6 +6,15 @@
 <div class="container">
     Module Name : {{ module_obj.module|upper }}</br>
     Status : {{ module_obj.status }}</br></br>
+    {% if module_target_object %}
+        Mapped targets :</br>
+        <ol>
+            {% for module_target in module_target_object %}
+                <li><a href="../../target/{{module_target.target.slug}}/" target="_blank">{{module_target.target.target|upper}}</a></li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+</br>
     <a href="../update/{{module_obj.slug}}/" type="button" class="btn btn-warning">Update</a>
     <a href="../delete/{{module_obj.slug}}/" type="button" class="btn btn-danger">Delete</a>
 </div>

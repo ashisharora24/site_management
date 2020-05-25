@@ -6,7 +6,6 @@
         <tr>
             <th>Module</th>
             <th>Target</th>
-            <th>Status</th>
         </tr>
         </thead>
         <tbody>
@@ -26,7 +25,6 @@
                                     <a href="../../target/{{mod_targ_obj.target.slug}}/" target="_blank">{{mod_targ_obj.target.target}}</a>
                                     {% if mod_targ_obj.target.status == False %}(currently disabled){% endif %}
                                 </td>
-                                <td><a href="../../module_target_map/{{mod_targ_obj.slug}}/" target="_blank">{{mod_targ_obj.status}}</a></td>
                             </tr>
                         {% endfor %}
                     {% else %}
@@ -35,7 +33,6 @@
                                     <a href="../../module/{{module_obj.slug}}/" target="_blank">{{module_obj.module}}</a>
                                     {% if module_obj.status == False %}(currently disabled){% endif %}
                                 </td>
-                                <td></td>
                                 <td></td>
                             </tr>
                     {% endif %}

@@ -12,7 +12,7 @@
         {% for module in module_obj %}
         <tr>
             <td><a href="../{{module.slug}}/">{{module.module|upper}}</a></td>
-            <td>{{module.status}}</td>
+            <td>{% if module.status == True %}Active{% else %}Deactive{% endif %}</td>
         </tr>
         {% endfor %}
         </tbody>

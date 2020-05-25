@@ -67,6 +67,23 @@ class DepartmentModel(models.Model):
         super(DepartmentModel, self).save(*args, **kwargs)
 
 
+class DepartmentModuleTargetModel(models.Model):
+    department = models.ForeignKey(DepartmentModel, on_delete=models.CASCADE)
+    module_target = models.ForeignKey(ModuleTargetModel, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True)
+    status = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.slug
+
+    # def save(self, *args, **kwargs):
+    #     if self.department and self.module:
+    #         self.slug = slugify(str(self.department)+"_"+str(self.module_target))
+    #         self.department = DepartmentModel.objects.filter(slug=self.department).first()
+    #         self.module_target = ModuleTargetModel.objects.filter(slug=self.module_target).first()
+    #     super(DepartmentModuleTargetModel, self).save(*args, **kwargs)
+
+
 class DepartmentModuleModel(models.Model):
     department = models.ForeignKey(DepartmentModel, on_delete=models.CASCADE)
     module = models.ForeignKey(ModuleModel, on_delete=models.CASCADE)

@@ -9,6 +9,7 @@ from .models import (DepartmentModel,
                      DepartmentModuleModel,
                      DepartmentGroupModel
                      )
+from django import forms
 
 
 class DepartmentNewForm(ModelForm):
@@ -73,11 +74,12 @@ class ModuleUpdateForm(ModelForm):
         module = self.cleaned_data.get('module').lower()
         status = self.cleaned_data.get('status')
 
-        if module:
-            if ModuleModel.objects.filter(module=module, status=status).exists():
-                raise ValidationError("You need to make some change in order to update the module details.")
-        else:
+        if not module:
             raise ValidationError("Module cannot be empty")
+        #     if ModuleModel.objects.filter(module=module, status=status).exists():
+        #         raise ValidationError("You need to make some change in order to update the module details.")
+        # else:
+
         return self.cleaned_data
 
 
@@ -267,4 +269,17 @@ class DepartmentGroupUpdateForm(ModelForm):
                 raise ValidationError("Department does not exist. please check again")
         else:
             raise ValidationError("You need to provide both Department and Group")
+        return self.cleaned_data
+
+
+class ModuleMapWithTargetForm(forms.Form):
+    target = forms.MultipleChoiceField(
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+    def clean(self):
+        targets = self.cleaned_data.get("target", False)
+        if not targets:
+            raise ValidationError("While submitting you need to select at least one target for mapping.")
         return self.cleaned_data

@@ -2,8 +2,14 @@
 {% block content %}
 
 <div class="container">
-      <p class="bg-warning text-white">Department</p>
-        1. <a href="department/new/">Create New Department</a></br>
+    <p class="bg-warning text-white">Department</p>
+        <dl>
+            <dt>Department</dt>
+            <dd>
+                <li><a href="department/new/">Create New Department</a></li>
+            </dd>
+        </dl>
+
         2. <a href="department/list/">List All Departments</a></br>
         3. <a href="department_module_map/new/">Map Department with Module</a></br>
         4. <a href="department_module_map/list/">List All Mapping of Department - Module</a></br>
@@ -12,12 +18,23 @@
 
     </br>
       <p class="bg-warning text-white">Module & Target</p>
-        1. <a href="module/new/">Create New Module</a></br>
-        2. <a href="module/list/">List All Modules</a></br>
-        3. <a href="target/new/">Create New Target</a></br>
-        4. <a href="target/list/">List All Target</a></br>
-        5. <a href="module_target_map/new/">Map Module with Target</a></br>
-        6. <a href="module_target_map/list/">List All Mapping of Module - Target</a></br>
+      <dl>
+          <dt>Module</dt>
+          <dd>
+              <li><a href="module/new/">Create New Module</a></li>
+              <li><a href="module/list/">List All Modules</a></li>
+          </dd>
+          <dt>Target</dt>
+          <dd>
+              <li><a href="target/new/">Create New Target</a></li>
+              <li><a href="target/list/">List All Target</a></li>
+          </dd>
+          <dt>Module Target Mapping</dt>
+          <dd>
+              <li><a href="module_target_map/list/">List All Mapping of Module - Target</a></li>
+          </dd>
+      </dl>
+
 
     </br>
       <p class="bg-warning text-white">User</p>

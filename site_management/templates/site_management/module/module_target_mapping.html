@@ -1,0 +1,16 @@
+{% extends "site_management/base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Site Management : Map targets to Module <a href="../../{{module.slug}}/" target="_blank">{{module.module|upper}}</a></h2>
+    </br><b><u>Step 2 : Map targets to Modules:</u></b>
+</div></br>
+<form method="POST" action=".">
+    {% csrf_token %}
+    <div class="container">
+        {{form.as_p}}
+        <button class="btn btn-info" type="submit" name="submit" value="submit">Submit</button>
+    </div>
+</form>
+</br></br>
+{% endblock %}
+<!--<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">-->

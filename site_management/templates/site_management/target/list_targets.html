@@ -11,7 +11,7 @@
         <tbody>
         {% for target in target_obj %}
         <tr>
-            <td><a href="../{{target.slug}}/">{{target.target|upper}}</a></td>
+            <td><a href="../{{target.slug}}/" target="_blank">{{target.target|upper}}</a></td>
             <td>{{target.status}}</td>
         </tr>
         {% endfor %}
